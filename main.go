@@ -1,12 +1,13 @@
 package main
 
 import (
+	"io/ioutil"
 	"log"
 	"net"
+	"net/http"
 	"os"
 	"strings"
 
-	"github.com/entrik/httpclient"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"github.com/sdwolfe32/trumail/api"
@@ -41,10 +42,16 @@ func main() {
 // address retrieved via an API call on api.ipify.org
 func retrievePTR() string {
 	// Request the IP from ipify
-	ip, err := httpclient.GetString("https://api.ipify.org/")
+	resp, err := http.Get("https://api.ipify.org/")
 	if err != nil {
 		log.Fatal("Failed to retrieve public IP")
 	}
+	defer resp.Body.Close()
+	ipBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal("Failed to read IP body")
+	}
+	ip := string(ipBytes)
 
 	// Retrieve the PTR record for our IP and return without a trailing dot
 	names, err := net.LookupAddr(ip)
