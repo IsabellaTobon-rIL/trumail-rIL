@@ -1,6 +1,6 @@
 module trumail
 
-go 1.25.1
+// go 1.25.1
 
 replace github.com/entrik/httpclient => github.com/s32x/httpclient v0.0.0-20220217184346-6df4d4d51c14
 
