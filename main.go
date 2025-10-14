@@ -16,7 +16,7 @@ import (
 
 var (
 	// port defines the port used by the api server
-	port = getEnv("PORT", "8000")
+	port = getEnv("PORT", "8080")
 	// sourceAddr defines the address used on verifier
 	sourceAddr = getEnv("SOURCE_ADDR", "isabella.tobon@ril.es")
 )
