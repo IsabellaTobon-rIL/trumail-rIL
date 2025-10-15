@@ -25,4 +25,4 @@ ENV PORT=8080
 ENTRYPOINT ["/app/trumail"]
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=5 \
-  CMD wget -q -O - http://localhost:8080/ >/dev/null 2>&1 || exit 1
+  CMD wget -q -O - http://localhost:8080/v1/health >/dev/null 2>&1 || exit 1
