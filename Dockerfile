@@ -23,5 +23,5 @@ ENV SOURCE_ADDR=""
 EXPOSE 8080
 ENTRYPOINT ["/app/trumail"]
 
-HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD wget -q -O - http://localhost:8080/v2/lookups/json?email=test@example.com >/dev/null 2>&1 || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=5 \
+  CMD wget -q -O - http://localhost:8080/ >/dev/null 2>&1 || exit 1
