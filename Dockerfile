@@ -21,6 +21,7 @@ WORKDIR /app
 COPY --from=build /app/trumail /app/trumail
 ENV SOURCE_ADDR=""
 EXPOSE 8080
+ENV PORT=8080
 ENTRYPOINT ["/app/trumail"]
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=5 \
